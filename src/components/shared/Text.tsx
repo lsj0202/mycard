@@ -8,18 +8,16 @@ interface TextProps {
   color?: Colors
   display?: CSSProperties['display']
   textAlign?: CSSProperties['textAlign']
-  fontWegith?: CSSProperties['fontWeight']
+  fontWeight?: CSSProperties['fontWeight']
   bold?: boolean
 }
 
-const Text = styled.span<TextProps>(
-  ({ color = 'black', display, textAlign, fontWegith, bold }) => ({
-    color: colors[color],
-    display,
-    textAlign,
-    fontWeight: bold ? 'bold' : fontWegith,
-  }),
-  ({ typography = 't5' }) => typographyMap[typography],
-)
+const Text = styled.span<TextProps>`
+  color: ${({ color = 'black' }) => colors[color]};
+  display: ${({ display }) => display};
+  text-align: ${({ textAlign }) => textAlign};
+  font-weight: ${({ fontWeight, bold }) => (bold ? 'bold' : fontWeight)};
+  ${({ typography = 't5' }) => typographyMap[typography]};
+`
 
 export default Text
